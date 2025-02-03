@@ -1,145 +1,68 @@
-# Basic Form with Formik
+# Formik Form Handling with Validation
 
-This is a simple React form using **Formik** for handling form state, validation, and submission. The form collects **name, email, and password** from users and validates the input fields before submission.
+This project demonstrates form handling using Formik in React, with both manual validation and Yup schema validation. The repository contains two implementations:
 
----
+1. **BasicForm** - Uses Formik's `useFormik` hook with a custom validation function.
+2. **FormikComponents** - Uses Formik components (`Formik`, `Form`, `Field`, `ErrorMessage`) along with Yup for schema validation.
 
 ## Features
 
-- Uses **Formik** for managing form state
-- **Validation** for required fields (name, email, password)
-- **Error handling** and displaying validation messages
-- **Touched fields detection** for better user experience
+- Form handling using Formik
+- Custom validation using a validate function
+- Schema validation using Yup
+- Error handling and displaying error messages
+- `touched` state management for better UX
 
----
+## Installation
 
-## Installation & Setup
-
-1. **Clone the repository (if applicable):**
-
+1. Clone the repository:
    ```sh
-   git clone <repository-url>
-   cd <project-folder>
+   git clone <repo_url>
    ```
-
-2. **Install dependencies:**
-
+2. Navigate to the project folder:
+   ```sh
+   cd formik-form-handling
+   ```
+3. Install dependencies:
    ```sh
    npm install
    ```
-
-3. **Start the development server:**
+4. Start the development server:
    ```sh
    npm start
    ```
 
----
+## BasicForm Component
 
-## Dependencies
+### Description
 
-- **React** (Frontend framework)
-- **Formik** (Form handling and validation library)
+The `BasicForm` component uses the `useFormik` hook to handle form state, submission, and validation manually.
 
-Install Formik if not already installed:
+### Validation Logic
 
-```sh
-npm install formik
-```
+- Name, email, and password are required fields.
+- Uses a `validate` function to check for empty fields and return error messages.
+- `formik.touched` is used to show errors only after the user has interacted with a field.
 
----
+## FormikComponents Component
 
-## Code Explanation
+### Description
 
-### **1. Initial Values**
+The `FormikComponents` component leverages Formik's built-in components (`Field`, `Form`, `ErrorMessage`) along with Yup for validation.
 
-```js
-const initialValues = {
-  name: "",
-  email: "",
-  password: "",
-};
-```
+### Validation Logic
 
-- Defines the initial state for the form fields.
+- Uses a Yup schema to enforce:
+  - Name is required.
+  - Email must be in valid format.
+  - Password is required.
 
-### **2. Form Submission Function**
+## Technologies Used
 
-```js
-const onSubmit = (values) => {
-  console.log("Form Data : ", values);
-};
-```
-
-- Handles form submission and logs user input.
-
-### **3. Validation Function**
-
-```js
-const validate = (values) => {
-  const errors = {};
-
-  if (!values.name) {
-    errors.name = "Name is required";
-  }
-
-  if (!values.email) {
-    errors.email = "Email is required";
-  }
-
-  if (!values.password) {
-    errors.password = "Password is required";
-  }
-
-  return errors;
-};
-```
-
-- Ensures that all fields are filled before form submission.
-- Stores error messages in an `errors` object and returns it.
-
-### **4. Using Formik in the Component**
-
-```js
-const formik = useFormik({
-  initialValues,
-  onSubmit,
-  validate,
-});
-```
-
-- `useFormik` manages form state, validation, and submission.
-
-### **5. Input Fields and Validation Messages**
-
-```js
-<input type="text" id="name" name="name" onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.name} />;
-{
-  formik.touched.name && formik.errors.name ? <div className="error">{formik.errors.name}</div> : null;
-}
-```
-
-- `onChange`: Updates state when user types.
-- `onBlur`: Marks the field as touched.
-- `formik.touched.name && formik.errors.name`: Displays an error only if the field was touched.
-
-### **6. Form Submission**
-
-```js
-<form onSubmit={formik.handleSubmit}>
-  <button type="submit">Submit</button>
-</form>
-```
-
-- Calls `formik.handleSubmit` to process the form.
-
----
-
-## How to Use
-
-1. Fill in your **Name, Email, and Password**.
-2. Click the **Submit** button.
-3. If validation fails, error messages appear below the respective fields.
-4. If validation passes, form data is logged to the console.
+- React.js
+- Formik
+- Yup (for validation)
+- HTML/CSS
 
 # **React Hook Form (RHF) vs. Formik: Performance & Scalability Comparison**
 

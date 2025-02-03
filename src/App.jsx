@@ -1,9 +1,9 @@
-import Register from "./pages/Register";
+import FormikComponents from "./pages/FormikComponents";
 
 function App() {
   return (
     <>
-      <Register />
+      <FormikComponents />
     </>
   );
 }
