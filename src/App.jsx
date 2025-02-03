@@ -1,9 +1,9 @@
-import FormikComponents from "./pages/FormikComponents";
+import FormikFeatures from "./pages/FormikFeatures";
 
 function App() {
   return (
     <>
-      <FormikComponents />
+      <FormikFeatures />
     </>
   );
 }
